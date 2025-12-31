@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anji Itinerary | Refined Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0D0D0E;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --accent: #FF9F43;
+            --text-main: #E1E1E1;
+            --text-dim: #888888;
+            --border: rgba(255, 255, 255, 0.06);
+            --font-main: 'Inter', 'Noto Sans SC', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { 
+            background-color: var(--bg); 
+            color: var(--text-main); 
+            font-family: var(--font-main); 
+            padding: 5vh 6vw; /* 增加边距，提升呼吸感 */
+            line-height: 1.5;
+        }
+
+        /* --- Header --- */
+        header { margin-bottom: 60px; max-width: 1100px; }
+        .hero-sub { color: var(--accent); font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; }
+        .hero-title { font-size: 2.2rem; font-weight: 500; letter-spacing: -1px; color: #fff; }
+
+        /* --- Prep Chips (Minimalist) --- */
+        .prep-row { display: flex; gap: 10px; margin-bottom: 50px; }
+        .chip { 
+            background: var(--card-bg); border: 1px solid var(--border); 
+            padding: 8px 16px; border-radius: 100px; 
+            font-size: 12px; color: var(--text-dim); display: flex; align-items: center; gap: 8px;
+        }
+        .chip b { color: var(--text-main); font-weight: 500; }
+
+        /* --- Budget Dashboard (Sophisticated) --- */
+        .dashboard { 
+            display: grid; grid-template-columns: repeat(4, 1fr); 
+            gap: 20px; margin-bottom: 60px; max-width: 1100px;
+        }
+        .db-card { border-left: 1px solid var(--border); padding-left: 20px; }
+        .db-label { font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; display: block; }
+        .db-value { font-size: 1.4rem; font-weight: 400; color: #fff; font-family: 'Inter'; }
+        .db-value.highlight { color: var(--accent); font-weight: 600; }
+
+        /* --- Tabs --- */
+        .tabs { display: flex; gap: 30px; margin-bottom: 30px; border-bottom: 1px solid var(--border); }
+        .tab-btn { 
+            background: none; border: none; color: var(--text-dim); 
+            padding: 12px 0; font-size: 14px; font-weight: 500; cursor: pointer; 
+            transition: all 0.3s; position: relative;
+        }
+        .tab-btn.active { color: #fff; }
+        .tab-btn.active::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 100%; height: 1.5px; background: var(--accent); }
+
+        /* --- Itinerary List --- */
+        .tab-content { display: none; max-width: 1100px; animation: fadeIn 0.6s ease; }
+        .tab-content.active { display: block; }
+        
+        .row { 
+            display: grid; grid-template-columns: 100px 1fr 120px; 
+            padding: 30px 0; border-bottom: 1px solid var(--border); 
+            transition: all 0.3s;
+        }
+        .row:hover { background: rgba(255,255,255,0.01); }
+        .row .time { font-size: 13px; color: var(--accent); font-weight: 500; font-family: 'Inter'; }
+        .row .info h3 { font-size: 16px; font-weight: 500; margin-bottom: 6px; color: #fff; }
+        .row .info p { font-size: 14px; color: var(--text-dim); font-weight: 300; }
+        .row .cost { text-align: right; font-size: 13px; color: var(--text-main); font-family: 'Inter'; }
+
+        /* --- Notice --- */
+        .notice { 
+            background: rgba(255, 159, 67, 0.03); border: 1px solid rgba(255, 159, 67, 0.1); 
+            padding: 20px; border-radius: 12px; margin: 30px 0; font-size: 13px; line-height: 1.6;
+        }
+        .notice b { color: var(--accent); margin-right: 8px; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        @media (max-width: 768px) {
+            body { padding: 40px 20px; }
+            .dashboard { grid-template-columns: 1fr 1fr; gap: 30px; }
+            .row { grid-template-columns: 1fr; gap: 10px; }
+            .row .cost { text-align: left; margin-top: 5px; color: var(--accent); }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="hero-sub">Anji Skiing Trip // 2025</div>
+    <h1 class="hero-title">Winter Escape Itinerary.</h1>
+</header>
+
+<div class="prep-row">
+    <div class="chip">📸 <b>Camera</b> 预约富士相机</div>
+    <div class="chip">🩱 <b>Swimwear</b> 准备泳衣</div>
+    <div class="chip">🔋 <b>Power</b> 充电宝</div>
+</div>
+
+<div class="dashboard">
+    <div class="db-card">
+        <span class="db-label">Stay (2N)</span>
+        <div class="db-value">¥1,799</div>
+    </div>
+    <div class="db-card">
+        <span class="db-label">HSR (Round)</span>
+        <div class="db-value">¥400</div>
+    </div>
+    <div class="db-card">
+        <span class="db-label">Skiing / Meals</span>
+        <div class="db-value">¥1,330</div>
+    </div>
+    <div class="db-card">
+        <span class="db-label">Per Person</span>
+        <div class="db-value highlight">¥1,760</div>
+    </div>
+</div>
+
+<div class="tabs">
+    <button class="tab-btn active" onclick="switchDay(event, 'day1')">Day 01. Arrival & Onsen</button>
+    <button class="tab-btn" onclick="switchDay(event, 'day2')">Day 02. Skiing Action</button>
+</div>
+
+<div id="day1" class="tab-content active">
+    <div class="row">
+        <div class="time">14:00</div>
+        <div class="info">
+            <h3>高铁抵达与民宿接驳 / Arrival</h3>
+            <p>安吉站打车直达 Nook Nook 民宿。建议提前询问是否有接驳服务。</p>
+        </div>
+        <div class="cost">~ ¥120 /车</div>
+    </div>
+    <div class="row">
+        <div class="time">18:30</div>
+        <div class="info">
+            <h3>特色晚餐 / Mountain Dinner</h3>
+            <p>在民宿顶楼享用竹林鸡与鱼头豆腐。</p>
+        </div>
+        <div class="cost">~ ¥160 /双人</div>
+    </div>
+    <div class="row" style="border-bottom: none;">
+        <div class="time">21:00</div>
+        <div class="info">
+            <h3>私汤治愈体验 / Starlit Onsen</h3>
+            <p>换上提前准备的泳衣，在星空下享受私汤时间。</p>
+        </div>
+        <div class="cost" style="color:#10B981">Included</div>
+    </div>
+</div>
+
+<div id="day2" class="tab-content">
+    <div class="row">
+        <div class="time">11:00</div>
+        <div class="info">
+            <h3>早餐时间 / Brunch</h3>
+            <p>享受一顿丰盛的早餐后出发前往雪场。</p>
+        </div>
+        <div class="cost">-</div>
+    </div>
+    <div class="row">
+        <div class="time">12:15</div>
+        <div class="info">
+            <h3>场外装备租赁 / Gear Rental</h3>
+            <p>导航“天池观景coffee”租赁雪服及护具。</p>
+        </div>
+        <div class="cost">~ ¥200 /双人</div>
+    </div>
+    <div class="row">
+        <div class="time">13:30</div>
+        <div class="info">
+            <h3>滑雪实战 / Skiing Action</h3>
+            <p>进入江南天池滑雪场。中餐在三楼简餐区解决。</p>
+        </div>
+        <div class="cost">¥376 + ¥160</div>
+    </div>
+
+    <div class="notice">
+        <b>Critical Warning:</b> 千万别坐传送带！新手请锁定右手边的平缓初级区。建议请教练 (¥300/h)。
+    </div>
+
+    <div class="row" style="border-bottom: none;">
+        <div class="time">18:00</div>
+        <div class="info">
+            <h3>晚间补给 / Recharge Dinner</h3>
+            <p>运动后回民宿洗热水澡，享受围炉煮茶或影音时光。</p>
+        </div>
+        <div class="cost">~ ¥160 /双人</div>
+    </div>
+</div>
+
+<script>
+    function switchDay(evt, id) {
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        evt.currentTarget.classList.add('active');
+    }
+</script>
+
+</body>
+</html>
